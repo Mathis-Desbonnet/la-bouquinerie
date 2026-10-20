@@ -80,16 +80,10 @@ function changePage(index) {
               First published in {{ bookSearch.first_publish_year }}
             </p>
             <div class="book-foot">
-              <span v-if="bookSearch.ratings_average" class="stars">
-                <span
-                  v-for="i in 5"
-                  :key="i"
-                  :class="{ on: i <= Math.round(bookSearch.ratings_average) }"
-                  >★</span
-                >
-              </span>
               <Button
-                v-if="$store.getters.library.includes(bookSearch)"
+                v-if="
+                  $store.getters.library.find((item) => item.key == bookSearch.key) != undefined
+                "
                 variant="primary"
                 text="In your library"
               />
