@@ -5,7 +5,6 @@ const props = defineProps({
   rating: { type: Number, default: 0 },
   max: { type: Number, default: 5 },
   size: { type: Number, default: 18 },
-  // color of the empty stars
   emptyColor: { type: String, default: '#17356b' },
   filledColor: { type: String, default: '#0075ff' },
 })

@@ -69,8 +69,10 @@ function changePage(index) {
           <div v-else class="book-cover book-cover-empty">No cover</div>
           <div class="book-info">
             <h3 class="book-title">
-              {{ bookSearch.title
-              }}<template v-if="bookSearch.author_name">
+              <RouterLink :to="'/book/' + bookSearch.key.split('/').pop()" class="book-link">{{
+                bookSearch.title
+              }}</RouterLink
+              ><template v-if="bookSearch.author_name">
                 - {{ bookSearch.author_name.join(', ') }}</template
               >
             </h3>
@@ -154,5 +156,12 @@ function changePage(index) {
   background: #0075ff;
   color: #fff;
   border-color: #0075ff;
+}
+.book-link {
+  color: inherit;
+  text-decoration: none;
+}
+.book-link:hover {
+  text-decoration: underline;
 }
 </style>

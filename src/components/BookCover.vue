@@ -3,7 +3,6 @@ import { computed } from 'vue'
 
 const props = defineProps({
   src: { type: String, default: '' },
-  // Open Library cover id (cover_i): builds the URL for you
   coverId: { type: [Number, String], default: null },
   alt: { type: String, default: '' },
   width: { type: Number, default: 102 },

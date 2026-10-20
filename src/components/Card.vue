@@ -1,14 +1,6 @@
 <script setup>
 import Button from './Button.vue'
 
-/*
- * Generic card: header / body / footer.
- *  - header : `title` prop, or the #header slot
- *  - body   : default slot
- *  - footer : #footer slot (only rendered when provided)
- *
- * variant: panel (default) | accent | plain | stat | stat-light
- */
 defineProps({
   title: { type: String },
   variant: { type: String, default: 'panel' },
@@ -66,7 +58,6 @@ defineEmits(['click', 'close'])
   justify-content: center;
 }
 
-/* ---- panel ---- */
 .card-panel,
 .card-accent {
   background: #c3daee;
@@ -82,12 +73,10 @@ defineEmits(['click', 'close'])
   font-weight: 700;
 }
 
-/* ---- plain: no box, to nest items in a panel ---- */
 .card-plain {
   gap: 0;
 }
 
-/* ---- stat tiles ---- */
 .card-stat,
 .card-stat-light {
   background: #5b8fd0;

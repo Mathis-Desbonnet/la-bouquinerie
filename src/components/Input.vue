@@ -1,14 +1,11 @@
 <script setup>
-const props = defineProps(['placeholder'])
-defineEmits(['update:modelValue'])
+defineProps(['placeholder'])
+const model = defineModel()
 </script>
 
 <template>
   <label class="search">
-    <input
-      @input="$emit('update:modelValue', $event.target.value)"
-      :placeholder="placeholder || 'Search your favorite book !'"
-    />
+    <input v-model="model" :placeholder="placeholder || 'Search your favorite book !'" />
     <span class="search-btn">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round">
         <circle cx="10.5" cy="10.5" r="6.5" />

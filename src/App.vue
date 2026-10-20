@@ -60,7 +60,6 @@ body {
   box-sizing: border-box;
 }
 
-/* ---- book row (used inside <Card> bodies) ---- */
 .book {
   display: flex;
   gap: 10px;

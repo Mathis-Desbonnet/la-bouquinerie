@@ -35,6 +35,11 @@ const store = createStore({
       if (state.library.find((object) => object.book === book) == undefined) return
       state.library.find((object) => object.book === book).state = newState
     },
+    setBookReview(state, { book, rating, reviewDesc }) {
+      if (state.library.find((object) => object.book === book) == undefined) return
+      state.library.find((object) => object.book === book).rating = rating
+      state.library.find((object) => object.book === book).note = reviewDesc
+    },
     removeBookFromFavorites(state, bookToRemove) {
       if (state.library.find((object) => object.book === bookToRemove) == undefined) return
       state.library.find((object) => object.book === bookToRemove).favorite = false

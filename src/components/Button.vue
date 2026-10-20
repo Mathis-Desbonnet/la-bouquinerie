@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue'
 
-// variants: primary | secondary | alert | accent | light | bookmark | custom
 const props = defineProps(['text', 'variant', 'customColor'])
 defineEmits(['click'])
 
@@ -43,12 +42,10 @@ const customStyle = computed(() => {
   transform: scale(0.97);
 }
 
-/* Blue pill ("Reading", "In your library") */
 .btn-primary {
   background-color: #0075ff;
   color: #ffffff;
 }
-/* Light grey ("Finished", "Add to your library") */
 .btn-secondary {
   background-color: #ececf1;
   color: #1b1b2f;
@@ -58,14 +55,12 @@ const customStyle = computed(() => {
   background-color: #dc2626;
   color: #ffffff;
 }
-/* Wide muted blue ("See full list") */
 .btn-accent {
   background-color: #5b8fd0;
   color: #ffffff;
   padding: 7px 34px;
   font-weight: 400;
 }
-/* White on blue ("See your review") */
 .btn-light {
   background-color: #ffffff;
   color: #1b1b2f;

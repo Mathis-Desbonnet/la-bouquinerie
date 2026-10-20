@@ -1,4 +1,6 @@
+import BookDetail from '@/pages/BookDetail.vue'
 import Favorites from '@/pages/Favorites.vue'
+import FullList from '@/pages/FullList.vue'
 import Home from '@/pages/Home.vue'
 import Library from '@/pages/Library.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -9,6 +11,14 @@ const router = createRouter({
     {
       path: '/',
       component: Home,
+    },
+    {
+      path: '/full-list',
+      component: FullList,
+    },
+    {
+      path: '/book/:id',
+      component: BookDetail,
     },
     {
       path: '/library',
