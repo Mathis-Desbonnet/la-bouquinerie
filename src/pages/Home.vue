@@ -14,10 +14,20 @@ watch(value, (newValue) => {
   console.log(newValue)
   store.dispatch('fetchBooksByTitle', newValue)
 })
+
+function changeBookState(book) {
+  console.log(store.getters.libraryDetails.find((obj) => obj.book == book))
+  if (store.getters.libraryDetails.find((obj) => obj.book == book).state == 0) {
+    store.commit('setBookState', { book: book, newState: 1 })
+  } else if (store.getters.libraryDetails.find((obj) => obj.book == book).state == 1) {
+    store.commit('setBookState', { book: book, newState: 2 })
+  } else {
+    store.commit('setBookState', { book: book, newState: 1 })
+  }
+}
 </script>
 
 <template>
-  <!-- onAddBookMode is reused here as the "show full list" toggle -->
   <h1 class="page-title">
     {{ onAddBookMode ? "François' personal library" : 'Welcome back, François' }}
   </h1>
@@ -56,6 +66,17 @@ watch(value, (newValue) => {
             <Button variant="alert" @click="$store.commit('removeBookFromLibrary', book)"
               >Remove</Button
             >
+            <Button @click="() => changeBookState(book)"
+              ><div v-if="$store.getters.libraryDetails.find((obj) => obj.book == book).state == 0">
+                Not reading
+              </div>
+              <div
+                v-else-if="$store.getters.libraryDetails.find((obj) => obj.book == book).state == 1"
+              >
+                Reading
+              </div>
+              <div v-else>Finished</div></Button
+            >
             <Button
               v-if="$store.getters.favorites.includes(book)"
               variant="bookmark"
@@ -70,7 +91,8 @@ watch(value, (newValue) => {
                 stroke-linejoin="round"
                 fill="#facc15"
               >
-                <path d="M3 2h14v21l-7-5-7 5z" /></svg>
+                <path d="M3 2h14v21l-7-5-7 5z" />
+              </svg>
             </Button>
             <Button
               v-else
@@ -86,7 +108,8 @@ watch(value, (newValue) => {
                 stroke-linejoin="round"
                 fill="none"
               >
-                <path d="M3 2h14v21l-7-5-7 5z" /></svg>
+                <path d="M3 2h14v21l-7-5-7 5z" />
+              </svg>
             </Button>
           </div>
         </div>

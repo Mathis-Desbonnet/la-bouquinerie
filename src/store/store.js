@@ -1,14 +1,20 @@
 import { createStore } from 'vuex'
 
-export default createStore({
+const savedLocal = localStorage.getItem('library')
+const initLibrary = savedLocal ? JSON.parse(savedLocal) : []
+
+const store = createStore({
   state: {
     searchItems: [],
-    library: [],
+    library: initLibrary,
   },
   mutations: {
     setItems(state, items) {
       state.searchItems = items.docs
       console.log(items.docs)
+    },
+    resetSearch(state) {
+      state.searchItems = []
     },
     addBookToLibrary(state, bookToAdd) {
       if (state.library.find((object) => object.book === bookToAdd) != undefined) return
@@ -25,13 +31,9 @@ export default createStore({
       if (state.library.find((object) => object.book === bookToAdd) == undefined) return
       state.library.find((object) => object.book === bookToAdd).favorite = true
     },
-    setBookToReading(state, bookToAdd) {
-      if (state.library.find((object) => object.book === bookToAdd) == undefined) return
-      state.library.find((object) => object.book === bookToAdd).state = 1
-    },
-    setBookToFinish(state, bookToAdd) {
-      if (state.library.find((object) => object.book === bookToAdd) == undefined) return
-      state.library.find((object) => object.book === bookToAdd).state = 2
+    setBookState(state, { book, newState }) {
+      if (state.library.find((object) => object.book === book) == undefined) return
+      state.library.find((object) => object.book === book).state = newState
     },
     removeBookFromFavorites(state, bookToRemove) {
       if (state.library.find((object) => object.book === bookToRemove) == undefined) return
@@ -52,6 +54,7 @@ export default createStore({
   },
   getters: {
     items: (state) => state.searchItems,
+    libraryDetails: (state) => state.library,
     library: (state) => state.library.map((object) => object.book),
     favorites: (state) =>
       state.library.filter((object) => object.favorite).map((object) => object.book),
@@ -65,3 +68,9 @@ export default createStore({
       state.library.filter((object) => object.rating != -1).map((object) => object.rating).length,
   },
 })
+
+store.subscribe((mutations, state) => {
+  localStorage.setItem('library', JSON.stringify(state.library))
+})
+
+export default store
