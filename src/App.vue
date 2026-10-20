@@ -18,7 +18,7 @@
         <path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z" />
       </svg>
     </RouterLink>
-    <RouterLink to="/library" class="nav-btn" aria-label="Search">
+    <RouterLink to="/addBook" class="nav-btn" aria-label="Search">
       <svg
         width="22"
         height="22"

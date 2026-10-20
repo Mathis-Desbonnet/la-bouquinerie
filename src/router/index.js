@@ -1,8 +1,8 @@
+import AddBook from '@/pages/AddBook.vue'
 import BookDetail from '@/pages/BookDetail.vue'
 import Favorites from '@/pages/Favorites.vue'
 import FullList from '@/pages/FullList.vue'
 import Home from '@/pages/Home.vue'
-import Library from '@/pages/Library.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -21,8 +21,8 @@ const router = createRouter({
       component: BookDetail,
     },
     {
-      path: '/library',
-      component: Library,
+      path: '/addBook',
+      component: AddBook,
     },
     {
       path: '/favorites',

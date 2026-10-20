@@ -1,17 +1,29 @@
 <script setup>
+import Button from './Button.vue'
+
 defineProps(['placeholder'])
+defineEmits(['click'])
 const model = defineModel()
 </script>
 
 <template>
   <label class="search">
     <input v-model="model" :placeholder="placeholder || 'Search your favorite book !'" />
-    <span class="search-btn">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round">
-        <circle cx="10.5" cy="10.5" r="6.5" />
-        <path d="M15.5 15.5L21 21" />
-      </svg>
-    </span>
+    <Button variant="custom" custom-color="rgb(0, 0, 0, 0)" @click="$emit('click')"
+      ><span class="search-btn">
+        <svg
+          width="26"
+          height="26"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#fff"
+          stroke-width="2.4"
+          stroke-linecap="round"
+        >
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="M15.5 15.5L21 21" />
+        </svg> </span
+    ></Button>
   </label>
 </template>
 

@@ -1,27 +1,24 @@
 <script setup>
 import Input from '@/components/Input.vue'
-import Button from '@/components/Button.vue'
 import Card from '@/components/Card.vue'
 import { computed, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import Limiter from '@/components/Limiter.vue'
 
 const value = ref('')
-const onAddBookMode = ref(false)
 
 const store = useStore()
 
 store.commit('resetSearch')
 
-watch(value, (newValue) => {
-  console.log(newValue)
-  store.dispatch('fetchBooksByTitle', newValue)
-})
+function search() {
+  store.dispatch('fetchBooksByTitle', value.value)
+}
 </script>
 
 <template>
   <div class="search-zone">
-    <Input v-model="value" placeholder="Search your favorite book !" />
+    <Input v-model="value" placeholder="Search your favorite book !" @click="search" />
   </div>
 
   <Card title="Results" v-if="$store.getters.items && $store.getters.items.length">
